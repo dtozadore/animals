@@ -1,9 +1,0 @@
-/home/dtozadore/Projects/NaoPyTest/foo/build-sys-linux-x86_64/CMakeFiles/rebuild_cache.dir
-/home/dtozadore/Projects/NaoPyTest/foo/build-sys-linux-x86_64/CMakeFiles/edit_cache.dir
-/home/dtozadore/Projects/NaoPyTest/foo/build-sys-linux-x86_64/CMakeFiles/test.dir
-/home/dtozadore/Projects/NaoPyTest/foo/build-sys-linux-x86_64/CMakeFiles/list_install_components.dir
-/home/dtozadore/Projects/NaoPyTest/foo/build-sys-linux-x86_64/CMakeFiles/install.dir
-/home/dtozadore/Projects/NaoPyTest/foo/build-sys-linux-x86_64/CMakeFiles/foo.dir
-/home/dtozadore/Projects/NaoPyTest/foo/build-sys-linux-x86_64/CMakeFiles/test_foo.dir
-/home/dtozadore/Projects/NaoPyTest/foo/build-sys-linux-x86_64/CMakeFiles/install/strip.dir
-/home/dtozadore/Projects/NaoPyTest/foo/build-sys-linux-x86_64/CMakeFiles/install/local.dir
