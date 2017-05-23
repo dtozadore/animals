@@ -3,6 +3,7 @@
 
 import vars 
 import random
+import RoboClient as rc
 
 #funtion say
 def say(str2say):

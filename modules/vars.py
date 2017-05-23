@@ -13,12 +13,14 @@ from naoqi import ALProxy
 
 #variable to check if the robot is conected
 naoConeted= True
+tabletConected = True
 
 tts = ALProxy("ALTextToSpeech", robotIp, 9559)
 behavior = ALProxy("ALBehaviorManager", robotIp, 9559)
 motors =  ALProxy("ALMotion", robotIp, 9559)
 posture = ALProxy("ALRobotPosture", robotIp, 9559)
-
+"""
+"""
 debug = True
 
 Ykey = 'y'

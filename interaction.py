@@ -8,6 +8,9 @@ Created on Thu May  4 16:14:07 2017
 from modules import vars
 from modules import dialog as diag
 from modules import motion as mt
+
+from modules import RobotClient as rc
+
 #from modules import vision as vs
 #import time
 
@@ -88,7 +91,7 @@ def stories(start, end):
             
         narratives(i)
         
-        #question(i)
+        question(i)
         
         # Dont ask last time        
         if(i<end-1):
