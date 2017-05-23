@@ -6,7 +6,7 @@ import random
 import RobotClient as rc
 
 #funtion say
-def say(str2say):
+def say(str2say, lang='ptbr'):
     """ Function to make the robot say (if connected) """
     
     print("[SYSYEM SAYING]: " + str2say)
@@ -14,7 +14,10 @@ def say(str2say):
     
     if(vars.naoConeted):
         vars.tts.say(str2say)
-    
+   
+   elif(vars.tabletConected):
+        vars.tablet.speakText(str2say,lang)
+        
         
     
 def setLang(lang):
@@ -37,7 +40,7 @@ def repeat():
     rd=random.randint(0,2)
     
     if(rd==0):
-        return "Será que você já sabe qual animal que é? Ou se você quiser eu posso repetir a estoria. Você gostaria que eu repetisse?"
+        return "Você gostaria que eu repetisse?"
         
     elif(rd==1):
         return "Se ficou confuso eu posso repetir pra você. Quer que eu repita?"

@@ -6,11 +6,11 @@ Created on Fri May 19 12:57:40 2017
 """
 import socket
 
-SERVER_IP = "192.168.1.101"
+SERVER_IP = "192.168.1.106"
 SERVER_PORT = 9999
 
 class RobotClient:
-    def __init__(self, serverIp, serverPort):
+    def __init__(self, serverIp=SERVER_IP, serverPort=SERVER_PORT):
         self.robotSocket = None
         self.setIp(serverIp, serverPort)
         
@@ -31,6 +31,8 @@ class RobotClient:
         self.robotSocket.send((language+'\n').encode('utf-8'))
         print('Sending sentence...')
         self.robotSocket.send((sentence+'\n').encode('utf-8'))
+        print('Waiting for acknowledgement...')
+        self.robotSocket.recv(3)
         print('Done!')
     
     def speakText(self, text, language):
@@ -45,6 +47,8 @@ class RobotClient:
         self.robotSocket.send(u'sound\n'.encode('utf-8'))
         print('Sending name of the animal...')
         self.robotSocket.send((sound+'\n').encode('utf-8'))
+        print('Waiting for acknowledgement...')
+        self.robotSocket.recv(3)
         print('Done!')
 
 

@@ -8,8 +8,7 @@ Created on Thu May  4 16:14:07 2017
 from modules import vars
 from modules import dialog as diag
 from modules import motion as mt
-
-from modules import RobotClient as rc
+import time
 
 #from modules import vision as vs
 #import time
@@ -96,7 +95,7 @@ def stories(start, end):
         # Dont ask last time        
         if(i<end-1):
             diag.say("Fim dessa estória! Você gostaria que eu contasse mais uma estória de um animal diferente?")
-            if( (raw_input("Another story?:"))!=vars.Ykey):
+            if( (myInput("Another story?:"))!=vars.Ykey):
                 break
         
     return i
@@ -124,9 +123,18 @@ def narratives(i):
         
         #diag.setLang('Brazilian')
         diag.say(diag.sound())
+
+        
+        x = 1        
         #--PLAY SOUND
+        time.sleep(x)
+        vars.tablet.playSound(vars.animals[i])        
+        time.sleep(x)
+                
+        
         diag.say(diag.repeat())
-        repeat=raw_input("repeat?(SPACE for Y. Anything else for N):")
+        
+        repeat=myInput("repeat?(SPACE for Y. Anything else for N):")
     
     
     
@@ -136,7 +144,7 @@ def question(i):
     aux = True
     while(aux):
         diag.say("Você sabe como se pronuncia o nome desse animal em inglês?")
-        ans=raw_input("Know the name?(SPACE for Y. Anything else for N)")
+        ans=myInput("Know the name?(SPACE for Y. Anything else for N)")
         
         if(ans!=vars.Ykey):
             diag.say("Sem Problemas. Eu sei e te conto")
@@ -148,7 +156,7 @@ def question(i):
             diag.say("É Isso mesmo. Parabéns.")
             aux = False
         else:
-            diag.say("Nao é bem isso. Veja como é.")
+            diag.say("Não é bem isso. Veja como é.")
             explain(i)
             diag.say("E agora?")
             aux = True
@@ -162,17 +170,22 @@ def explain(i):
         
         diag.say("O nome desse animal em inglês é:")
         diag.setLang('English')
-        diag.say(vars.animals[i])
+        diag.say(vars.animals[i], 'enus')
         diag.setLang('Brazilian')
         
         diag.say("Quer que eu repita?")
-        ans2=raw_input("Repeat?(SPACE for Y. Anything else for N):")
+        ans2=myInput("Repeat?(SPACE for Y. Anything else for N):")
                 
         
     
     
+def myInput(str2say):
     
+    char = ''
+    while not char in ['y', 'n']:
+        char = raw_input(str2say)
     
+    return char
     
     
     
