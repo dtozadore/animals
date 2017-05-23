@@ -3,18 +3,19 @@
 
 import vars 
 import random
-import RoboClient as rc
+import RobotClient as rc
 
 #funtion say
 def say(str2say):
     """ Function to make the robot say (if connected) """
     
-    print("[NAO SAYING]: " + str2say)
+    print("[SYSYEM SAYING]: " + str2say)
     print("")
     
     if(vars.naoConeted):
         vars.tts.say(str2say)
     
+        
     
 def setLang(lang):
         if(vars.naoConeted):

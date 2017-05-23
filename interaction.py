@@ -26,7 +26,7 @@ def main():
     if vars.debug:
             print("[INFO] Starting Stories ")            
       
-    maxStory=stories(7,11)
+    maxStory=stories(0,3)
 
 
     if vars.debug:
@@ -112,7 +112,7 @@ def narratives(i):
         
         #diag.setLang('Brazilian')
         mt.run(vars.animals[i])
-        diag.say(diag.load_from_file(vars.path+vars.animals[i]))
+        "diag.say(diag.load_from_file(vars.path+vars.animals[i]))"
         
         
         """
