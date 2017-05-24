@@ -5,79 +5,78 @@ Created on Thu May  4 16:14:07 2017
 @author: dtozadore
 """
 
+import sys
+import datetime
+import time
+import cv2
+
+
 from modules import vars
 from modules import dialog as diag
 from modules import motion as mt
-import time
 
 #from modules import vision as vs
-#import time
+
+
+img=cv2.imread("yes-no.jpeg")
+img= cv2.resize(img, (400, 200)) 
+
+
+
 
 
 def main():
     
-    if vars.debug:
-            print("[INFO] Starting program ")            
-            
     
+    
+    start_time = datetime.datetime.now().replace(microsecond=0)
+    
+    vars.info("Starting program ")            
     vars.initializer();
+   
+    vars.userName = raw_input("User Name: ")
     
-    if vars.debug:
-            print("[INFO] Starting Stories ")            
-      
-    maxStory=stories(0,3)
+    vars.info("Welcome dialog")
+    introduction()  
+    
+    vars.info("Starting Stories ")            
+    maxStory=stories(3,12)
+    #maxStory=3
 
-
-    if vars.debug:
-            print("[INFO] Stories Finished Successfully")            
-      
-    
-    
+    vars.info("Stories Finished Successfully")            
     print("Reach %d stories!" % (maxStory+1))    
     
-    
-    
-    
-    
-    """    
-    
-    Timeline:
-        -Introducao
-        -historias
-            narrativa
-            sabe nome?
-                sim: me 
-      
-    toSay = "Hello, my name is goku!"
-    path = "/home/dtozadore/Projects/NaoPyTest/foo/animals/"
-    
-    #diag.say(vars.teste)
-    
-        
-    #animals=['fish', 'cat', 'dog', 'bear', 'wolf','whale', 'fox', 'chicken', 'cow', 'duck']
-    
-    animals=['cow', 'chicken', 'pig', 'birds', 'fish', 'duck', 
-             'horse', 'sheep', 'frog', 'bear', 'wolf', 'seal']
+    vars.info("Starting Evaluation")
+    evaluation(maxStory)
 
-   
-    vars.tts.setLanguage('Brazilian')
-    diag.say("Vamos dizer comigo o nome dos animais em ingles?")    
+    vars.info("Good Bye")    
+    bye()
 
-    vars.tts.setLanguage('English')    
-    for ani in animals:    
-        diag.say(ani)    
-""
-    for ani in animals:    
-        vars.tts.setLanguage('Brazilian')
-        diag.say(diag.load_from_file(path+ani))    
-        
-        vars.tts.setLanguage('English')
-        diag.say("This was the story of animal:")
-        time.sleep(0.5) 
-        diag.say(ani)
-"""
+    end_time = datetime.datetime.now().replace(microsecond=0)
+    
+    vars.totalTime = end_time - start_time
+    
+    #print vars.hit
+    fname = writeResults(maxStory)
+    vars.info("Evaluation write in file " + fname )
+    
+    vars.info("Program Finished Successfully!")
+    cv2.destroyAllWindows()
+    
+    
+#------------------------ START FUNCTIONS -------------------------------------    
+    
 
+def introduction():
+    
+    diag.say("Olá, " + vars.userName)
+    diag.say(diag.load_from_file("./txts/intro.txt"))
+    
 
+def bye():
+    
+    diag.say("Bom, então é isso, " + vars.userName)
+    diag.say(diag.load_from_file("./txts/bye.txt"))    
 
 def stories(start, end):
     
@@ -109,9 +108,8 @@ def narratives(i):
     repeat = vars.Ykey
     while (repeat==vars.Ykey):
         
-        #diag.setLang('Brazilian')
         mt.run(vars.animals[i])
-        "diag.say(diag.load_from_file(vars.path+vars.animals[i]))"
+        diag.say(diag.load_from_file(vars.path+vars.animals[i]))
         
         
         """
@@ -121,14 +119,13 @@ def narratives(i):
         diag.say(vars.animals[i])
         """
         
-        #diag.setLang('Brazilian')
         diag.say(diag.sound())
 
         
         x = 1        
         #--PLAY SOUND
         time.sleep(x)
-        vars.tablet.playSound(vars.animals[i])        
+        diag.playSound(vars.animals[i])        
         time.sleep(x)
                 
         
@@ -151,7 +148,7 @@ def question(i):
             explain(i)
             
         diag.say("Ok. Entao me diga:")
-        ans=raw_input("Is the name right?(SPACE for Y. Anything else for N):")
+        ans=myInput("Is the name right?(SPACE for Y. Anything else for N):")
         if(ans==vars.Ykey):
             diag.say("É Isso mesmo. Parabéns.")
             aux = False
@@ -181,16 +178,76 @@ def explain(i):
     
 def myInput(str2say):
     
+#==============================================================================
+#     char = ''
+#     while not char in ['y', 'n']:
+#         char = raw_input(str2say)
+#         if char == "q":
+#             sys.exit(1)
+#     return char
+#     
+#==============================================================================
     char = ''
-    while not char in ['y', 'n']:
-        char = raw_input(str2say)
+    while not char in ['y', 'n', 'q']:
+         
+        cv2.imshow('image',img)
+        char = cv2.waitKey(0)
+
+        print char
+        
+        if char == 1048697:
+            return 'y'
+        elif char == 1048686:    
+            return 'n'
+        elif char == 1048689:
+            cv2.destroyAllWindows()
     
-    return char
+            sys.exit(1)
+
     
+def evaluation(x):
+
+    #diag.say("Certo! Chega de estórias. Vamos ver o que você consegue se lembrar do que conversamos hoje.")
+
+    for i in range(x+1):
+      while True:
+            diag.say("Me diga como se fala em ingles.")
+            diag.say(vars.animals_pt[i])
+            #diag.say("")
+            ans=myInput("Repeat?(SPACE for Y. Anything else for N):")
+            if(ans=="y"):
+                diag.say("Acertou miseravi. Vamos pro próximo")
+                break
+            else:
+                diag.say("Poxa! Não é bem assim. O certo é:")
+                diag.setLang('English')
+                diag.say(vars.animals[i], 'enus')
+                diag.setLang('Brazilian')
+                diag.say("Agora que já sabe")
+                vars.hit[i]=False
+
+
+
+
+
+
+def writeResults(maxStory):
     
-    
-    
-    
+    if(vars.naoConeted):
+        fname = "robot_results.txt"
+    elif(vars.tablet):
+        fname = "tablet_results.txt"
+        
+    f = open(fname,"a")
+
+    #f.write( '{0:20} | '.format(vars.userName) + " | " +  str(sum(vars.hit[0:maxStory])) + "/" + str(maxStory) + " | " + str(vars.hit[0:maxStory]) + "\n" )
+    #f.write( '{0:20} | {1:2} | {} \n'.format(vars.userName, str(vars.hit[0:maxStory]), str(maxStory), str(vars.hit[0:maxStory]) ) )
+    f.write( '{0:15} | {1:2d}/{2:2d} | {3} | {4}\n'.format(vars.userName, sum(vars.hit[0:maxStory]),  maxStory, vars.totalTime, vars.hit[0:maxStory]) )
+
+    f.close()
+
+    return fname
+
     
 if __name__ == "__main__":
     main()  

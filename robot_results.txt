@@ -1,0 +1,7 @@
+User_Name       |  H/ T | Duration| List of right answers
+============================================================================= 
+Joao Hannauer   |  3/ 3 | 0:00:00 | [True, True, True]
+Alface          |  3/ 3 | 0:00:01 | [True, True, True]
+Mega Murrilllo  |  3/ 3 | 0:00:01 | [True, True, True]
+Veloso, Caetano |  3/ 3 | 0:00:00 | [True, True, True]
+Aécio Neves     |  4/ 8 | 0:10:18 | [True, True, False, False, True, False, True, False]

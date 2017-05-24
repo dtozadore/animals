@@ -55,10 +55,12 @@ class RobotClient:
 
 
 # SAMPLE CODE
-if __name__ == '__main__':
-    robotClient = RobotClient(serverIp=SERVER_IP, serverPort=SERVER_PORT)
-    robotClient.speakText('Este é um texto com várias frases.'+
-                           'É interessante fazer essa experiência, para verificar que ele separa corretamente.'+
-                           'Só evite ? e !. Sim. Esses símbolos de pontuação não estão definidos.', 'ptbr')
-    robotClient.playSound('duck')
-    robotClient.speakText('See, this is how a duck sounds.','enus')
+#==============================================================================
+# if __name__ == '__main__':
+#     robotClient = RobotClient(serverIp=SERVER_IP, serverPort=SERVER_PORT)
+#     robotClient.speakText('Este é um texto com várias frases.'+
+#                            'É interessante fazer essa experiência, para verificar que ele separa corretamente.'+
+#                            'Só evite ? e !. Sim. Esses símbolos de pontuação não estão definidos.', 'ptbr')
+#     robotClient.playSound('duck')
+#     robotClient.speakText('See, this is how a duck sounds.','enus')
+#==============================================================================

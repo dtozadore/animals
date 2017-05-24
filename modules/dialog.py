@@ -4,18 +4,22 @@
 import vars 
 import random
 import RobotClient as rc
+import os
+import time
+
+
 
 #funtion say
 def say(str2say, lang='ptbr'):
     """ Function to make the robot say (if connected) """
     
-    print("[SYSYEM SAYING]: " + str2say)
+    print("[SYSTEM SAYING]: " + str2say)
     print("")
     
     if(vars.naoConeted):
         vars.tts.say(str2say)
    
-   elif(vars.tabletConected):
+    elif(vars.tabletConected):
         vars.tablet.speakText(str2say,lang)
         
         
@@ -27,7 +31,7 @@ def setLang(lang):
     
     
 def load_from_file(filename):
-    """ Fucntion to load a serie of dialog form file name """
+    """ Fucntion to load a serie of dialog from file name """
     
     reader = open(filename,"r")
     ret = reader.read()
@@ -61,4 +65,19 @@ def sound():
         
     else:
         return "O som dele é mais ou menos isso"
+             
+             
+             
+def playSound(sound):
+    
+    if(vars.naoConeted):
+        aux = os.getcwd() + "/sounds/" + sound + ".wav"
+        #vars.aup.playFile(aux)
+        os.system("aplay " + aux )
+        #time.sleep(4)
+        
+    if(vars.tabletConected):         
+        vars.tablet.playSound(sound)                 
+             
+             
              

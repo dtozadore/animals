@@ -16,7 +16,7 @@ def run(behaviorName):
     
     if vars.naoConeted:
         vars.posture.goToPosture("Crouch", 1.0)
-        taskId = vars.behavior.runBehavior(behaviorName)
+        taskId = vars.behavior.post.runBehavior(behaviorName)
         vars.posture.goToPosture("Crouch", 1.0)
     else:
         vars.info("NAO not Connected. Cant run motions")
