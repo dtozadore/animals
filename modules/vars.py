@@ -8,7 +8,7 @@ Created on Thu May  4 16:06:04 2017
 #robotIp="169.254.206.242"
 robotIp="169.254.148.90"
 
-from naoqi import ALProxy
+#from naoqi import ALProxy
 import RobotClient as rc
 
 #variable to check if the robot is conected
@@ -44,7 +44,7 @@ path = "./animals/"
     
 #animals=['fish', 'cat', 'dog', 'bear', 'wolf','whale', 'fox', 'chicken', 'cow', 'duck']
 
-animals=['cow', 'chicken', 'pig', 'birds', 'fish', 'duck', 
+animals=['cow', 'chicken', 'pig', 'bird', 'fish', 'duck', 
          'horse', 'sheep', 'frog', 'bear', 'wolf', 'seal']
 
 animals_pt=['vaca', 'frango', 'porco', 'pássaro', 'peixe', 'pato', 

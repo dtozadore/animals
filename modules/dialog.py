@@ -76,7 +76,8 @@ def playSound(sound):
         os.system("aplay " + aux )
         #time.sleep(4)
         
-    if(vars.tabletConected):         
+    if(vars.tabletConected):  
+        print sound
         vars.tablet.playSound(sound)                 
              
              

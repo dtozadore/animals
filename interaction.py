@@ -40,7 +40,7 @@ def main():
     introduction()  
     
     vars.info("Starting Stories ")            
-    maxStory=stories(3,12)
+    maxStory=stories(0,12)
     #maxStory=3
 
     vars.info("Stories Finished Successfully")            
@@ -207,7 +207,7 @@ def myInput(str2say):
     
 def evaluation(x):
 
-    #diag.say("Certo! Chega de estórias. Vamos ver o que você consegue se lembrar do que conversamos hoje.")
+    diag.say("Certo! Chega de estórias. Vamos ver o que você consegue se lembrar do que conversamos hoje.")
 
     for i in range(x+1):
       while True:
@@ -242,7 +242,7 @@ def writeResults(maxStory):
 
     #f.write( '{0:20} | '.format(vars.userName) + " | " +  str(sum(vars.hit[0:maxStory])) + "/" + str(maxStory) + " | " + str(vars.hit[0:maxStory]) + "\n" )
     #f.write( '{0:20} | {1:2} | {} \n'.format(vars.userName, str(vars.hit[0:maxStory]), str(maxStory), str(vars.hit[0:maxStory]) ) )
-    f.write( '{0:15} | {1:2d}/{2:2d} | {3} | {4}\n'.format(vars.userName, sum(vars.hit[0:maxStory]),  maxStory, vars.totalTime, vars.hit[0:maxStory]) )
+    f.write( '{0:15} | {1:2d}/{2:2d} | {3} | {4}\n'.format(vars.userName, sum(vars.hit[0:maxStory+1]),  maxStory+1, vars.totalTime, vars.hit[0:maxStory+1]) )
 
     f.close()
 
