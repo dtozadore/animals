@@ -34,13 +34,13 @@ def main():
     vars.info("Starting program ")            
     vars.initializer();
    
-    vars.userName = raw_input("User Name: ")
+    #vars.userName = raw_input("User Name: ")
     
     vars.info("Welcome dialog")
     introduction()  
-    
+    """"""
     vars.info("Starting Stories ")            
-    maxStory=stories(3,12)
+    maxStory=stories(0,12)
     #maxStory=3
 
     vars.info("Stories Finished Successfully")            
@@ -105,7 +105,9 @@ def stories(start, end):
 
 def narratives(i):
     
+    #TROCAR PARA  ficar repetindo dps 
     repeat = vars.Ykey
+    
     while (repeat==vars.Ykey):
         
         mt.run(vars.animals[i])
@@ -119,15 +121,16 @@ def narratives(i):
         diag.say(vars.animals[i])
         """
         
-        diag.say(diag.sound())
-
-        
-        x = 1        
-        #--PLAY SOUND
-        time.sleep(x)
-        diag.playSound(vars.animals[i])        
-        time.sleep(x)
-                
+        if(vars.animals[i]=='fish'):
+            diag.say("Não é possível escutar o som desse animal pois ele vive embaixo dágua" )
+        else:    
+            diag.say(diag.sound())
+            x = 1        
+            #--PLAY SOUND
+            time.sleep(x)
+            diag.playSound(vars.animals[i])        
+            time.sleep(x)
+                    
         
         diag.say(diag.repeat())
         
@@ -193,7 +196,7 @@ def myInput(str2say):
         cv2.imshow('image',img)
         char = cv2.waitKey(0)
 
-        print char
+        #print char
         
         if char == 1048697:
             return 'y'
@@ -207,7 +210,7 @@ def myInput(str2say):
     
 def evaluation(x):
 
-    #diag.say("Certo! Chega de estórias. Vamos ver o que você consegue se lembrar do que conversamos hoje.")
+    diag.say("Certo! Chega de estórias. Vamos ver o que você consegue se lembrar do que conversamos hoje.")
 
     for i in range(x+1):
       while True:
@@ -216,7 +219,9 @@ def evaluation(x):
             #diag.say("")
             ans=myInput("Repeat?(SPACE for Y. Anything else for N):")
             if(ans=="y"):
-                diag.say("Acertou miseravi. Vamos pro próximo")
+                diag.say("Muito bom! Acertou.")
+                if i!=x:
+                    diag.say( "Vamos pro próximo" )
                 break
             else:
                 diag.say("Poxa! Não é bem assim. O certo é:")
