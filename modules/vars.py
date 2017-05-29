@@ -6,24 +6,24 @@ Created on Thu May  4 16:06:04 2017
 """
 
 #robotIp="169.254.206.242"
-robotIp="169.254.148.90"
+robotIp="169.254.206.242"
 
 #from naoqi import ALProxy
 import RobotClient as rc
 
 #variable to check if the robot is conected
-naoConeted= False
-tabletConected = True
+naoConeted= True
+tabletConected = False
 
 
 
-"""
+
 tts = ALProxy("ALTextToSpeech", robotIp, 9559)
 behavior = ALProxy("ALBehaviorManager", robotIp, 9559)
 motors =  ALProxy("ALMotion", robotIp, 9559)
 posture = ALProxy("ALRobotPosture", robotIp, 9559)
 aup = ALProxy("ALAudioPlayer",  robotIp, 9559)
-"""
+
 
 tablet = rc.RobotClient()
 
